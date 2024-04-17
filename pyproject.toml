@@ -1,0 +1,42 @@
+[project]
+name = "aws-sso-user-list"
+version = "1.0.0"
+description = "AWS SSO user list CLI"
+requires-python = ">=3.12"
+dependencies = [
+    "botocore",
+    "click",
+    "requests",
+]
+[project.optional-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+]
+[project.scripts]
+sso-user-list = "aws_sso_user_list.cli:main"
+
+[tool.black]
+line-length = 80
+
+[tool.isort]
+profile = "black"
+include_trailing_comma = true
+line_length = 80
+multi_line_output = 3
+combine_as_imports = true
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+addopts = "-vvv --cov=aws_sso_user_list --cov-report=term-missing"
+junit_family = "xunit2"
+
+[tool.mypy]
+ignore_missing_imports = true
